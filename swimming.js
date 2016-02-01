@@ -28,12 +28,9 @@ var getSeconds = function(text) {
 
 module.exports = function (ctx, done) {
    var dbUri = ctx.data.MONGO_URL;
-   var date = new Date(ctx.data.createdAt);
+   var date = ctx.data.createdAt;
    var meters = getMeters(ctx.data.text);
    var seconds = getSeconds(ctx.data.text);
-
-   console.log(ctx.data.createdAt);
-   console.log(ctx.data.text);
 
    MongoClient.connect(dbUri, function (err, db) {
       if(err) done(err);
